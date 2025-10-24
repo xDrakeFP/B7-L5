@@ -49,6 +49,7 @@ public class EventService {
         found.setDescription(body.description());
         found.setPosti(body.posti());
         found.setTitle(body.title());
+        found.setPostiOccupati(0);
         return this.repo.save(found);
 
     }

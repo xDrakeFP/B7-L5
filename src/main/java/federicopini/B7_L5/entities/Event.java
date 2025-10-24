@@ -30,6 +30,9 @@ public class Event {
     @Column(name ="posti_disponibili")
     private int posti;
 
+    @Column(name = "posti_occupati")
+    private int postiOccupati;
+
     @Column(name = "luogo")
     private String location;
 
