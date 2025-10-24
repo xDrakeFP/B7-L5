@@ -4,8 +4,13 @@ package federicopini.B7_L5.entities;
 import federicopini.B7_L5.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.management.ConstructorParameters;
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -14,7 +19,7 @@ import java.util.UUID;
 @Entity
 @ToString
 @Table(name = "utenti")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue
     @Setter(AccessLevel.NONE)
@@ -29,6 +34,7 @@ public class User {
     private String email;
 
     @Column(name = "ruolo")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     private String password;
@@ -39,5 +45,15 @@ public class User {
         this.email = email;
         this.role = role;
         this.password = password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(this.role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
     }
 }
