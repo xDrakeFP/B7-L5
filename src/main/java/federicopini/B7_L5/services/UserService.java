@@ -34,9 +34,8 @@ public class UserService {
         this.repo.findByEmail(body.email()).ifPresent(user -> {
             throw new BadRequestException("L'email "+body.email()+" è gia in uso");
         });
-        Role ruolo = body.role() != null ? body.role() : Role.USER; // Se ruolo è null gli metto di default USER
 
-        User newUser = new User(body.name(), body.surname(), body.email(), ruolo,bcrypt.encode(body.password()));
+        User newUser = new User(body.name(), body.surname(), body.email(), body.role(),bcrypt.encode(body.password()));
         User savedUser = this.repo.save(newUser);
         return this.repo.save(savedUser);
     }
