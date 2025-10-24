@@ -8,10 +8,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "eventi")
+@Table(name = "prenotazioni")
 public class Booking {
     @Id
     @GeneratedValue
