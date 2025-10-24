@@ -35,6 +35,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "organizzatore_id")
+    @Setter(AccessLevel.NONE)
     private User user;
 
     public Event(String title, String description, LocalDateTime data, int posti, String location, User user) {
